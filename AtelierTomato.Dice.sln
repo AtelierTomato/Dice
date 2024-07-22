@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator.Test", "AtelierTomato.Calculator.Test\AtelierTomato.Calculator.Test.csproj", "{608D7524-504C-4FDC-AACE-618E278933F7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Dice", "AtelierTomato.Dice\AtelierTomato.Dice.csproj", "{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Dice.Test", "AtelierTomato.Dice.Test\AtelierTomato.Dice.Test.csproj", "{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{608D7524-504C-4FDC-AACE-618E278933F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{608D7524-504C-4FDC-AACE-618E278933F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{608D7524-504C-4FDC-AACE-618E278933F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

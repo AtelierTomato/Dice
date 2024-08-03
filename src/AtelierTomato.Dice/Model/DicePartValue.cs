@@ -18,19 +18,22 @@
 			if (double.IsNaN(value))
 			{
 				throw new ArgumentException("This dice part is not a number!", nameof(value));
-			} else if (double.IsInfinity(value))
+			}
+			else if (double.IsInfinity(value))
 			{
 				this.Value = null;
-			} else if (Math.Abs(value) > int.MaxValue)
+			}
+			else if (Math.Abs(value) > int.MaxValue)
 			{
 				throw new ArgumentOutOfRangeException(nameof(value), "This dice part is too big but not infinite!");
-			} else
+			}
+			else
 			{
 				this.Value = Math.Abs((int)Math.Round(value, 0));
 			}
 		}
 
-		public static readonly DicePartValue Infinity = new DicePartValue(double.PositiveInfinity);
+		public static readonly DicePartValue Infinity = new(double.PositiveInfinity);
 
 		public int? Value { get; init; }
 		public double SourceValue { get; init; }
@@ -72,8 +75,8 @@
 			return ReferenceEquals(left, null) ? ReferenceEquals(right, null) : left.CompareTo(right) >= 0;
 		}
 
-		public static implicit operator DicePartValue(int value) => new DicePartValue(value);
-		public static implicit operator DicePartValue(double value) => new DicePartValue(value);
+		public static implicit operator DicePartValue(int value) => new(value);
+		public static implicit operator DicePartValue(double value) => new(value);
 
 		public override bool Equals(object? obj)
 		{

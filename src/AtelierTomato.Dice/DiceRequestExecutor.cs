@@ -19,7 +19,7 @@ namespace AtelierTomato.Dice
 		{
 			if (diceRequest.Quantity.IsInfinite && diceRequest.TargetThreshold is not null)
 			{
-				queryExecutionLogBuilder.AddExpression(diceRequest, Array.Empty<DicePartValue>(), DicePartValue.Infinity, double.PositiveInfinity);
+				queryExecutionLogBuilder.AddExpression(diceRequest, [], DicePartValue.Infinity, double.PositiveInfinity);
 				return Double.PositiveInfinity;
 			}
 
@@ -47,7 +47,8 @@ namespace AtelierTomato.Dice
 					if (diceRequest.TargetThreshold is not null && roll >= diceRequest.TargetThreshold)
 					{
 						targetCounter++;
-					} else if (diceRequest.FailureThreshold is not null && roll <= diceRequest.FailureThreshold)
+					}
+					else if (diceRequest.FailureThreshold is not null && roll <= diceRequest.FailureThreshold)
 					{
 						targetCounter--;
 					}
@@ -56,10 +57,11 @@ namespace AtelierTomato.Dice
 
 			if (diceRequest.SortDescending)
 			{
-				rolls = rolls.OrderByDescending(x => x).ToArray();
+				rolls = [.. rolls.OrderByDescending(x => x)];
 			}
 
-			var result = targetCounter switch {
+			var result = targetCounter switch
+			{
 				null => rolls.Select(r => r.IsInfinite ? double.PositiveInfinity : r.Value!.Value).Sum(),
 				_ => targetCounter.Value,
 			};
@@ -69,15 +71,16 @@ namespace AtelierTomato.Dice
 			return result;
 		}
 
-		private IEnumerable<DicePartValue> DropAndKeep(IEnumerable<DicePartValue> rolls, DicePartValue? dropAmount, DicePartValue? keepAmount)
+		private static IEnumerable<DicePartValue> DropAndKeep(IEnumerable<DicePartValue> rolls, DicePartValue? dropAmount, DicePartValue? keepAmount)
 		{
-			if (dropAmount is { IsInfinite: true }) return Enumerable.Empty<DicePartValue>();
+			if (dropAmount is { IsInfinite: true }) return [];
 
 			var indexedRollsMinusDrops = rolls.Select((roll, index) => (roll, index))
 				.OrderBy(t => t.roll)
 				.Skip(dropAmount?.Value!.Value ?? 0);
 
-			var indexedRollsKept = keepAmount switch {
+			var indexedRollsKept = keepAmount switch
+			{
 				null or { IsInfinite: true } => indexedRollsMinusDrops,
 				_ => indexedRollsMinusDrops.Reverse().Take(keepAmount.Value!.Value),
 			};
@@ -88,9 +91,10 @@ namespace AtelierTomato.Dice
 		public IEnumerable<DicePartValue> PerformRolls(DiceRequest diceRequest)
 		{
 			// if we have an infinite quantity of dice, cap if infinity is broken by other directives
-			var cappedQuantity = diceRequest switch {
-				{ Quantity: { IsInfinite: false } } => diceRequest.Quantity,
-				{ KeepHighestAmount: { IsInfinite: false } } => diceRequest.KeepHighestAmount,
+			var cappedQuantity = diceRequest switch
+			{
+				{ Quantity.IsInfinite: false } => diceRequest.Quantity,
+				{ KeepHighestAmount.IsInfinite: false } => diceRequest.KeepHighestAmount,
 				_ => diceRequest.Quantity,
 			};
 
@@ -205,7 +209,8 @@ namespace AtelierTomato.Dice
 			if (diceRequest.ExplodeThreshold > diceRequest.Sides) return diceRequest.Sides;
 			var explodeIterations = diceRequest.ExplodeIsInfinite ? DicePartValue.Infinity : diceRequest.ExplodeIterations ?? diceOptions.DefaultExplosionRecursions;
 
-			return explodeIterations switch {
+			return explodeIterations switch
+			{
 				{ IsInfinite: true } => DicePartValue.Infinity,
 				{ Value: <= 0 } => diceRequest.Sides,
 				_ => (explodeIterations.Value!.Value + 1) * diceRequest.Sides.Value!.Value
@@ -231,7 +236,8 @@ namespace AtelierTomato.Dice
 					&& (diceRequest.RerollThreshold <= diceRequest.Sides))
 				{
 					minimumRoll = diceRequest.RerollThreshold.Value!;
-				} else
+				}
+				else
 				{
 					minimumRoll = 1;
 				}

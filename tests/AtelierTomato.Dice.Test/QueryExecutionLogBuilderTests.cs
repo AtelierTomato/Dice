@@ -29,7 +29,7 @@ namespace AtelierTomato.Dice.Test
 				false,
 				default,
 				default);
-			target.AddExpression(diceRequest, new DicePartValue[] { }, null, 0);
+			target.AddExpression(diceRequest, [], null, 0);
 
 			var result = target.Build();
 
@@ -58,7 +58,7 @@ namespace AtelierTomato.Dice.Test
 				false,
 				default,
 				default);
-			target.AddExpression(diceRequest, new DicePartValue[] { 6 }, null, 6);
+			target.AddExpression(diceRequest, [6], null, 6);
 
 			var result = target.Build();
 
@@ -88,7 +88,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -118,7 +118,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				DiceVerbosity.Verbose);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -148,7 +148,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				DiceVerbosity.Quiet);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -178,7 +178,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -198,7 +198,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -229,7 +229,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -249,7 +249,7 @@ namespace AtelierTomato.Dice.Test
 				DiceDisplayBehavior.Hide,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -279,7 +279,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, 2, 2);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], 2, 2);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -299,7 +299,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, 1, 1);
+				[6,], 1, 1);
 
 			var result = target.Build();
 
@@ -329,7 +329,7 @@ namespace AtelierTomato.Dice.Test
 				false,
 				default,
 				default);
-			target.AddExpression(diceRequest, new DicePartValue[] { }, null, 0);
+			target.AddExpression(diceRequest, [], null, 0);
 
 			var result = target.Build();
 
@@ -358,7 +358,7 @@ namespace AtelierTomato.Dice.Test
 				false,
 				default,
 				default);
-			target.AddExpression(diceRequest, new DicePartValue[] { 6 }, null, 6);
+			target.AddExpression(diceRequest, [6], null, 6);
 
 			var result = target.Build();
 
@@ -388,7 +388,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -418,7 +418,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				DiceVerbosity.Verbose);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -448,7 +448,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				DiceVerbosity.Quiet);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -478,7 +478,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -498,7 +498,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -529,7 +529,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, 2, 2);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], 2, 2);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -549,7 +549,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, 1, 1);
+				[6,], 1, 1);
 
 			var result = target.Build();
 
@@ -580,7 +580,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -610,7 +610,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -640,7 +640,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				DiceVerbosity.Verbose);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -670,7 +670,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				DiceVerbosity.Quiet);
 			target.AddExpression(diceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var result = target.Build();
 
@@ -700,7 +700,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -720,7 +720,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -750,7 +750,7 @@ namespace AtelierTomato.Dice.Test
 				DiceDisplayBehavior.Show,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -770,7 +770,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -800,7 +800,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -820,7 +820,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -850,7 +850,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -870,7 +870,7 @@ namespace AtelierTomato.Dice.Test
 				DiceDisplayBehavior.Hide,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 
@@ -900,7 +900,7 @@ namespace AtelierTomato.Dice.Test
 				DiceDisplayBehavior.Show,
 				default);
 			target.AddExpression(multipleDiceRequest,
-				new DicePartValue[] { 1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2 }, null, 70);
+				[1, 2, 3, 4, 5, 6, 5, 4, 3, 2, 1, 2, 3, 4, 5, 6, 5, 4, 3, 2], null, 70);
 
 			var singleDiceRequest = new DiceRequest(
 				false,
@@ -920,7 +920,7 @@ namespace AtelierTomato.Dice.Test
 				default,
 				default);
 			target.AddExpression(singleDiceRequest,
-				new DicePartValue[] { 6, }, null, 6);
+				[6,], null, 6);
 
 			var result = target.Build();
 

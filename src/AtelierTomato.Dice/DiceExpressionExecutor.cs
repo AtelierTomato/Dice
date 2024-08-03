@@ -30,7 +30,8 @@ namespace AtelierTomato.Dice
 			return (numericResult, queryExecutionLogBuilder.Build());
 		}
 
-		public double ExecuteCore(IExpressionNode expressionTree, QueryExecutionLogBuilder queryExecutionLogBuilder) => expressionTree switch {
+		public double ExecuteCore(IExpressionNode expressionTree, QueryExecutionLogBuilder queryExecutionLogBuilder) => expressionTree switch
+		{
 			NumberNode numberNode => numberNode.Value,
 			NegationNode negationNode => -ExecuteCore(negationNode.Right, queryExecutionLogBuilder),
 			AddNode addNode => ExecuteCore(addNode.Left, queryExecutionLogBuilder) + ExecuteCore(addNode.Right, queryExecutionLogBuilder),

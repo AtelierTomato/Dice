@@ -1,5 +1,5 @@
-﻿using AtelierTomato.Calculator.Model.Nodes;
-using System.Text;
+﻿using System.Text;
+using AtelierTomato.Calculator.Model.Nodes;
 
 namespace AtelierTomato.Dice.Model.Nodes
 {

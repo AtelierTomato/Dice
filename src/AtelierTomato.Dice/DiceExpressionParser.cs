@@ -1,10 +1,10 @@
-﻿using AtelierTomato.Calculator;
+﻿using System.Globalization;
+using System.Text.RegularExpressions;
+using AtelierTomato.Calculator;
 using AtelierTomato.Calculator.Model;
 using AtelierTomato.Calculator.Model.Nodes;
 using AtelierTomato.Dice.Model;
 using AtelierTomato.Dice.Model.Nodes;
-using System.Globalization;
-using System.Text.RegularExpressions;
 
 namespace AtelierTomato.Dice
 {
@@ -17,7 +17,8 @@ namespace AtelierTomato.Dice
 		private readonly Regex operatorRegex = new(@"[+\-*×∙/÷(^]", RegexOptions.Compiled);
 		private readonly Regex numberPieceRegex = new(@"[\d.]", RegexOptions.Compiled);
 
-		private readonly IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> dyadicMultiplicationLevelOperatorConstructors = new Dictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> {
+		private readonly IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> dyadicMultiplicationLevelOperatorConstructors = new Dictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>>
+		{
 			["*"] = (left, right) => new MultiplyNode(left, right),
 			["×"] = (left, right) => new MultiplyNode(left, right),
 			["∙"] = (left, right) => new MultiplyNode(left, right),
@@ -108,7 +109,8 @@ namespace AtelierTomato.Dice
 				{
 					// add implied multiplication operator
 					tokenEntry.InsertAfterThis(new RawOperatorToken("*"));
-				} else if (tokenEntry.Value is RawOperatorToken { Value: "-" })
+				}
+				else if (tokenEntry.Value is RawOperatorToken { Value: "-" })
 				{
 					var previousIsNotPartOfSubtraction = tokenEntry.Previous?.Value is null or (not NumberNode and not CloseParenthesisToken);
 					var nextIsNegatable = tokenEntry.Next.Value is NumberNode or OpenParenthesisToken;

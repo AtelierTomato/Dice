@@ -8,7 +8,8 @@
 
 		public DoubleLinkedListItem<T> First
 		{
-			get {
+			get
+			{
 				var item = this;
 				while (item.Previous != null) item = item.Previous;
 				return item;
@@ -16,7 +17,8 @@
 		}
 		public DoubleLinkedListItem<T> Last
 		{
-			get {
+			get
+			{
 				var item = this;
 				while (item.Next != null) item = item.Next;
 				return item;

@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AtelierTomato.Dice\AtelierTomato.Dice.csproj" />
+    <ProjectReference Include="..\..\src\AtelierTomato.Dice\AtelierTomato.Dice.csproj" />
   </ItemGroup>
 
   <ItemGroup>

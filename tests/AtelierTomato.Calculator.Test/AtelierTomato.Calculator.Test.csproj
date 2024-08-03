@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AtelierTomato.Calculator\AtelierTomato.Calculator.csproj" />
+    <ProjectReference Include="..\..\src\AtelierTomato.Calculator\AtelierTomato.Calculator.csproj" />
   </ItemGroup>
 
   <ItemGroup>

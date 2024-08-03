@@ -3,13 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator", "AtelierTomato.Calculator\AtelierTomato.Calculator.csproj", "{A6120531-4169-4FA2-910D-2D9A69F1FD63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator", "src\AtelierTomato.Calculator\AtelierTomato.Calculator.csproj", "{A6120531-4169-4FA2-910D-2D9A69F1FD63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator.Test", "AtelierTomato.Calculator.Test\AtelierTomato.Calculator.Test.csproj", "{608D7524-504C-4FDC-AACE-618E278933F7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator.Test", "tests\AtelierTomato.Calculator.Test\AtelierTomato.Calculator.Test.csproj", "{608D7524-504C-4FDC-AACE-618E278933F7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Dice", "AtelierTomato.Dice\AtelierTomato.Dice.csproj", "{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Dice", "src\AtelierTomato.Dice\AtelierTomato.Dice.csproj", "{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Dice.Test", "AtelierTomato.Dice.Test\AtelierTomato.Dice.Test.csproj", "{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Dice.Test", "tests\AtelierTomato.Dice.Test\AtelierTomato.Dice.Test.csproj", "{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

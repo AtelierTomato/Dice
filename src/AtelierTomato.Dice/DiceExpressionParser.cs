@@ -37,8 +37,8 @@ namespace AtelierTomato.Dice
 		public IExpressionNode Parse(string expressionText)
 		{
 			var tokensListFirst = this.Tokenize(expressionText);
-			this.ValidateParentheses(tokensListFirst);
-			tokensListFirst = this.Normalize(tokensListFirst);
+			ValidateParentheses(tokensListFirst);
+			tokensListFirst = Normalize(tokensListFirst);
 			return this.CreateExpressionTree(tokensListFirst);
 		}
 
@@ -65,13 +65,13 @@ namespace AtelierTomato.Dice
 					case string rawOperator when operatorRegex.IsMatch(rawOperator):
 						last = DoubleLinkedListItem<ITreeOrToken>.AppendToOrCreate(last, new RawOperatorToken(rawOperator));
 						break;
-					case string when dicePartRegex.IsMatch(expressionText.Substring(i)):
+					case string when dicePartRegex.IsMatch(expressionText.AsSpan(i)):
 						var match = dicePartRegex.Match(expressionText.Substring(i)).Value;
 						last = DoubleLinkedListItem<ITreeOrToken>.AppendToOrCreate(last, new RawDicePartToken(match));
 						i += match.Length - 1;
 						break;
 					case string number when numberPieceRegex.IsMatch(number):
-						while (i + 1 < expressionText.Length && numberPieceRegex.IsMatch(expressionText.Substring(i + 1, 1)))
+						while (i + 1 < expressionText.Length && numberPieceRegex.IsMatch(expressionText.AsSpan(i + 1, 1)))
 						{
 							number += expressionText.Substring(i + 1, 1);
 							++i;
@@ -99,7 +99,7 @@ namespace AtelierTomato.Dice
 		/// <param name="tokensListFirst">A linked list of tokens. Will get mutated by this method.</param>
 		/// <returns>The resulting linked list of tokens.</returns>
 		/// <exception cref="ParseException">When there is a structural error in the given list of tokens.</exception>
-		public DoubleLinkedListItem<ITreeOrToken> Normalize(DoubleLinkedListItem<ITreeOrToken> tokensListFirst)
+		public static DoubleLinkedListItem<ITreeOrToken> Normalize(DoubleLinkedListItem<ITreeOrToken> tokensListFirst)
 		{
 			for (var tokenEntry = tokensListFirst; tokenEntry?.Next is not null; tokenEntry = tokenEntry.Next)
 			{
@@ -130,7 +130,7 @@ namespace AtelierTomato.Dice
 		/// </summary>
 		/// <param name="tokensListFirst">A linked list of tokens.</param>
 		/// <exception cref="ParseException">When there is an error in the structure of parentheses.</exception>
-		private void ValidateParentheses(DoubleLinkedListItem<ITreeOrToken> tokensListFirst)
+		private static void ValidateParentheses(DoubleLinkedListItem<ITreeOrToken> tokensListFirst)
 		{
 			int depth = 0;
 			var position = 0;
@@ -159,18 +159,16 @@ namespace AtelierTomato.Dice
 
 			while (tokensListFirst != tokensListFirst.Last)
 			{
-				var parenthesisPair = this.FindParenthesisPair(tokensListFirst);
-				if (parenthesisPair is null) throw new ParseException("somehow a parenthesis went missing!");
+				var parenthesisPair = FindParenthesisPair(tokensListFirst) ?? throw new ParseException("somehow a parenthesis went missing!");
+				var remainingListItem = ProcessParenthesisPair(parenthesisPair.start, parenthesisPair.end);
 
-				var remainingListItem = ProcessParenthesisPair(parenthesisPair.Value.start, parenthesisPair.Value.end);
-
-				if (tokensListFirst == parenthesisPair.Value.start) tokensListFirst = remainingListItem;
+				if (tokensListFirst == parenthesisPair.start) tokensListFirst = remainingListItem;
 			}
 
 			return (IExpressionNode)tokensListFirst.Value;
 		}
 
-		private (DoubleLinkedListItem<ITreeOrToken> start, DoubleLinkedListItem<ITreeOrToken> end)? FindParenthesisPair(DoubleLinkedListItem<ITreeOrToken> tokensListFirst)
+		private static (DoubleLinkedListItem<ITreeOrToken> start, DoubleLinkedListItem<ITreeOrToken> end)? FindParenthesisPair(DoubleLinkedListItem<ITreeOrToken> tokensListFirst)
 		{
 			var closeToken = tokensListFirst.FindValueForward(t => t is CloseParenthesisToken);
 			if (closeToken is null) return null;
@@ -185,11 +183,11 @@ namespace AtelierTomato.Dice
 		/// </summary>
 		private DoubleLinkedListItem<ITreeOrToken> ProcessParenthesisPair(DoubleLinkedListItem<ITreeOrToken> parenthesisPairStart, DoubleLinkedListItem<ITreeOrToken> parenthesisPairEnd)
 		{
-			this.ProcessDice(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!);
-			this.ProcessPowers(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!);
-			this.ProcessNegation(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!);
-			this.ProcessLeftToRightDyadicOperators(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!, dyadicMultiplicationLevelOperatorConstructors);
-			this.ProcessLeftToRightDyadicOperators(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!, dyadicAdditionLevelOperatorConstructors);
+			ProcessDice(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!);
+			ProcessPowers(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!);
+			ProcessNegation(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!);
+			ProcessLeftToRightDyadicOperators(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!, dyadicMultiplicationLevelOperatorConstructors);
+			ProcessLeftToRightDyadicOperators(parenthesisPairStart.Next!, parenthesisPairEnd.Previous!, dyadicAdditionLevelOperatorConstructors);
 			if (parenthesisPairStart.Next != parenthesisPairEnd.Previous)
 				throw new ParseException("somehow there were multiple leftover nodes after parsing!");
 
@@ -199,7 +197,7 @@ namespace AtelierTomato.Dice
 			return remainingNode;
 		}
 
-		private void ProcessNegation(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd)
+		private static void ProcessNegation(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd)
 		{
 			for (DoubleLinkedListItem<ITreeOrToken>? item = tokenListStart; item != tokenListEnd.Next; item = item.Next)
 			{
@@ -220,7 +218,7 @@ namespace AtelierTomato.Dice
 			}
 		}
 
-		private void ProcessLeftToRightDyadicOperators(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd, IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> operatorConstructors)
+		private static void ProcessLeftToRightDyadicOperators(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd, IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> operatorConstructors)
 		{
 			for (DoubleLinkedListItem<ITreeOrToken>? item = tokenListStart; item != tokenListEnd.Next; item = item.Next)
 			{
@@ -243,7 +241,7 @@ namespace AtelierTomato.Dice
 			}
 		}
 
-		private void ProcessRightToLeftDyadicOperators(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd, IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> operatorConstructors)
+		private static void ProcessRightToLeftDyadicOperators(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd, IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> operatorConstructors)
 		{
 			for (DoubleLinkedListItem<ITreeOrToken>? item = tokenListEnd; item != tokenListStart.Previous; item = item.Previous)
 			{
@@ -266,7 +264,7 @@ namespace AtelierTomato.Dice
 			}
 		}
 
-		private void ProcessPowers(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd)
+		private static void ProcessPowers(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd)
 		{
 			for (DoubleLinkedListItem<ITreeOrToken>? item = tokenListEnd; item != tokenListStart.Previous; item = item.Previous)
 			{
@@ -283,7 +281,7 @@ namespace AtelierTomato.Dice
 
 					// negation expression may be trapped in the exponent -> process here "early".
 					// since rawExponentItem may be the final item in the list, do not search in that case.
-					this.ProcessNegation(rawExponentItem, rawExponentItem.FindItemForward(endItem => endItem.Next is null || endItem.Next.Value is CloseParenthesisToken or RawDicePartToken or RawOperatorToken)!);
+					ProcessNegation(rawExponentItem, rawExponentItem.FindItemForward(endItem => endItem.Next is null || endItem.Next.Value is CloseParenthesisToken or RawDicePartToken or RawOperatorToken)!);
 
 					var exponentItem = item.Next;
 
@@ -302,7 +300,7 @@ namespace AtelierTomato.Dice
 			}
 		}
 
-		private void ProcessDice(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd)
+		private static void ProcessDice(DoubleLinkedListItem<ITreeOrToken> tokenListStart, DoubleLinkedListItem<ITreeOrToken> tokenListEnd)
 		{
 			for (DoubleLinkedListItem<ITreeOrToken>? item = tokenListStart; item != tokenListEnd.Next; item = item.Next)
 			{
@@ -319,7 +317,7 @@ namespace AtelierTomato.Dice
 
 					// negation expression may be trapped in the exponent -> process here "early".
 					// since rawExponentItem may be the final item in the list, do not search in that case.
-					this.ProcessNegation(rawSidesItem, rawSidesItem.FindItemForward(endItem => endItem.Next is null || endItem.Next.Value is CloseParenthesisToken or RawDicePartToken or RawOperatorToken)!);
+					ProcessNegation(rawSidesItem, rawSidesItem.FindItemForward(endItem => endItem.Next is null || endItem.Next.Value is CloseParenthesisToken or RawDicePartToken or RawOperatorToken)!);
 
 					var sidesItem = item.Next;
 
@@ -426,7 +424,7 @@ namespace AtelierTomato.Dice
 			}
 		}
 
-		private IExpressionNode ProcessDiceArgumentValue(DoubleLinkedListItem<ITreeOrToken>? argumentFirstNode)
+		private static IExpressionNode ProcessDiceArgumentValue(DoubleLinkedListItem<ITreeOrToken>? argumentFirstNode)
 		{
 			if (argumentFirstNode is null || argumentFirstNode.Value is not IExpressionNode and not NegationToken)
 			{
@@ -436,7 +434,7 @@ namespace AtelierTomato.Dice
 			var dicePartNode = argumentFirstNode.Previous!;
 
 			Predicate<DoubleLinkedListItem<ITreeOrToken>> isLastOfExpression = item => item.Next is null || item.Next.Value is CloseParenthesisToken or RawDicePartToken or RawOperatorToken;
-			this.ProcessNegation(argumentFirstNode, isLastOfExpression(argumentFirstNode) ? argumentFirstNode : argumentFirstNode.FindNextItem(isLastOfExpression)!);
+			ProcessNegation(argumentFirstNode, isLastOfExpression(argumentFirstNode) ? argumentFirstNode : argumentFirstNode.FindNextItem(isLastOfExpression)!);
 
 			var argumentItem = dicePartNode.Next;
 			if (argumentItem is null || argumentItem.Value is not IExpressionNode nextExpression)

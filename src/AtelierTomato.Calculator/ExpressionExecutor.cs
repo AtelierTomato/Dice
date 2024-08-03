@@ -9,7 +9,7 @@ namespace AtelierTomato.Calculator
 		/// </summary>
 		/// <param name="expressionTree">The root node of an expression tree.</param>
 		/// <returns>The numeric result.</returns>
-		public double Calculate(IExpressionNode expressionTree) => expressionTree switch
+		public static double Calculate(IExpressionNode expressionTree) => expressionTree switch
 		{
 			NumberNode numberNode => numberNode.Value,
 			NegationNode negationNode => -Calculate(negationNode.Right),

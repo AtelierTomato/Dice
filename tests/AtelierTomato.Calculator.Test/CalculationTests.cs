@@ -16,7 +16,7 @@ namespace AtelierTomato.Calculator.Test
 		{
 			var mathsOnlyExpressionExecutor = new ExpressionExecutor();
 			var mathsOnlyExpressionParser = new ExpressionParser();
-			var result = mathsOnlyExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
+			var result = ExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
 			result.Should().Be(output);
 		}
 
@@ -29,7 +29,7 @@ namespace AtelierTomato.Calculator.Test
 		{
 			var mathsOnlyExpressionExecutor = new ExpressionExecutor();
 			var mathsOnlyExpressionParser = new ExpressionParser();
-			var result = mathsOnlyExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
+			var result = ExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
 			result.Should().Be(output);
 		}
 
@@ -46,7 +46,7 @@ namespace AtelierTomato.Calculator.Test
 		{
 			var mathsOnlyExpressionExecutor = new ExpressionExecutor();
 			var mathsOnlyExpressionParser = new ExpressionParser();
-			var result = mathsOnlyExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
+			var result = ExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
 			result.Should().Be(output);
 		}
 
@@ -63,7 +63,7 @@ namespace AtelierTomato.Calculator.Test
 		{
 			var mathsOnlyExpressionExecutor = new ExpressionExecutor();
 			var mathsOnlyExpressionParser = new ExpressionParser();
-			var result = mathsOnlyExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
+			var result = ExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
 			result.Should().Be(output);
 		}
 
@@ -83,7 +83,7 @@ namespace AtelierTomato.Calculator.Test
 		{
 			var mathsOnlyExpressionExecutor = new ExpressionExecutor();
 			var mathsOnlyExpressionParser = new ExpressionParser();
-			var result = mathsOnlyExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
+			var result = ExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
 			result.Should().Be(output);
 		}
 
@@ -93,7 +93,7 @@ namespace AtelierTomato.Calculator.Test
 		{
 			var mathsOnlyExpressionExecutor = new ExpressionExecutor();
 			var mathsOnlyExpressionParser = new ExpressionParser();
-			var result = mathsOnlyExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
+			var result = ExpressionExecutor.Calculate(mathsOnlyExpressionParser.Parse(input));
 			result.Should().Be(output);
 		}
 	}

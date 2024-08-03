@@ -30,9 +30,11 @@
 
 		public DoubleLinkedListItem<T> InsertAfterThis(T value)
 		{
-			var newItem = new DoubleLinkedListItem<T>(value);
-			newItem.Next = this.Next;
-			newItem.Previous = this;
+			var newItem = new DoubleLinkedListItem<T>(value)
+			{
+				Next = this.Next,
+				Previous = this
+			};
 			if (this.Next != null)
 			{
 				this.Next.Previous = newItem;
@@ -43,9 +45,11 @@
 
 		public DoubleLinkedListItem<T> InsertBeforeThis(T value)
 		{
-			var newItem = new DoubleLinkedListItem<T>(value);
-			newItem.Previous = this.Previous;
-			newItem.Next = this;
+			var newItem = new DoubleLinkedListItem<T>(value)
+			{
+				Previous = this.Previous,
+				Next = this
+			};
 			if (this.Previous != null)
 			{
 				this.Previous.Next = newItem;
@@ -102,8 +106,10 @@
 		/// <returns>The new item</returns>
 		public DoubleLinkedListItem<T> ReplaceThis(T value)
 		{
-			var newItem = new DoubleLinkedListItem<T>(value);
-			newItem.Next = this.Next;
+			var newItem = new DoubleLinkedListItem<T>(value)
+			{
+				Next = this.Next
+			};
 			if (this.Next != null)
 			{
 				this.Next.Previous = newItem;

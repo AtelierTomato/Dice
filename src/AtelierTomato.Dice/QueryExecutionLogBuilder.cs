@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using AtelierTomato.Dice.Model;
 using AtelierTomato.Dice.Settings;
 
@@ -40,20 +41,31 @@ namespace AtelierTomato.Dice
 				_ => throw new NotImplementedException(),
 			};
 
+			// Create a custom NumberFormatInfo
+			var infinityNumberFormat = new NumberFormatInfo
+			{
+				PositiveInfinitySymbol = "∞",
+				NegativeInfinitySymbol = "-∞"
+			};
+
+			// Create a custom CultureInfo and set its NumberFormat
+			var infinityCulture = (CultureInfo)CultureInfo.InvariantCulture.Clone();
+			infinityCulture.NumberFormat = infinityNumberFormat;
+
 			// todo replace this with collection patterns when those get released
 			if (targetCounter is not null)
 			{
 				if (excludeRollList)
 				{
-					return $"`{diceRequest}`: Hit: {result}";
+					return $"`{diceRequest}`: Hit: {result.ToString(infinityCulture)}";
 				}
 				else if (!rolls.Any())
 				{
-					return $"`{diceRequest}`: Hit: {result}";
+					return $"`{diceRequest}`: Hit: {result.ToString(infinityCulture)}";
 				}
 				else
 				{
-					return $"`{diceRequest}`: `[{string.Join(", ", rolls)}]` Hit: {result}";
+					return $"`{diceRequest}`: `[{string.Join(", ", rolls)}]` Hit: {result.ToString(infinityCulture)}";
 				}
 			}
 			else if (!rolls.Any())
@@ -62,11 +74,11 @@ namespace AtelierTomato.Dice
 			}
 			else if (rolls.Count == 1 || excludeRollList)
 			{
-				return $"`{diceRequest}`: {result}";
+				return $"`{diceRequest}`: {result.ToString(infinityCulture)}";
 			}
 			else
 			{
-				return $"`{diceRequest}`: `[{string.Join(", ", rolls)}]` Sum: {result}";
+				return $"`{diceRequest}`: `[{string.Join(", ", rolls)}]` Sum: {result.ToString(infinityCulture)}";
 			}
 		}
 

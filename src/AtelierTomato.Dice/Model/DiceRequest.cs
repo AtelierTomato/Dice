@@ -23,15 +23,15 @@ namespace AtelierTomato.Dice.Model
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
-			sb = sb.Append(Quantity.SourceValue).Append('d').Append(Sides.SourceValue);
+			sb = sb.Append(Quantity.SourceValue).Append('d').Append(Sides.ToString());
 
 			if (ExplodeThreshold is not null)
 			{
 				if (ExplodeIsInfinite)
 					sb = sb.Append('i');
-				sb = sb.Append('e').Append(ExplodeThreshold.SourceValue);
+				sb = sb.Append('e').Append(ExplodeThreshold.ToString());
 				if (ExplodeIterations is not null)
-					sb = sb.Append(';').Append(ExplodeIterations.SourceValue);
+					sb = sb.Append(';').Append(ExplodeIterations.ToString());
 
 			}
 
@@ -39,30 +39,30 @@ namespace AtelierTomato.Dice.Model
 			{
 				if (RerollIsInfinite)
 					sb = sb.Append('i');
-				sb = sb.Append('r').Append(RerollThreshold.SourceValue);
+				sb = sb.Append('r').Append(RerollThreshold.ToString());
 				if (RerollIterations is not null)
-					sb = sb.Append(';').Append(RerollIterations.SourceValue);
+					sb = sb.Append(';').Append(RerollIterations.ToString());
 
 			}
 
 			if (DropLowestAmount is not null)
 			{
-				sb = sb.Append('p').Append(DropLowestAmount.SourceValue);
+				sb = sb.Append('p').Append(DropLowestAmount.ToString());
 			}
 
 			if (KeepHighestAmount is not null)
 			{
-				sb = sb.Append('k').Append(KeepHighestAmount.SourceValue);
+				sb = sb.Append('k').Append(KeepHighestAmount.ToString());
 			}
 
 			if (TargetThreshold is not null)
 			{
-				sb = sb.Append('t').Append(TargetThreshold.SourceValue);
+				sb = sb.Append('t').Append(TargetThreshold.ToString());
 			}
 
 			if (FailureThreshold is not null)
 			{
-				sb = sb.Append('f').Append(FailureThreshold.SourceValue);
+				sb = sb.Append('f').Append(FailureThreshold.ToString());
 			}
 
 			if (SortDescending)

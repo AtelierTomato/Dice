@@ -2,7 +2,7 @@
 
 namespace AtelierTomato.Calculator
 {
-	public class ExpressionExecutor
+	public class ExpressionExecutor : IExpressionExecutor
 	{
 		/// <summary>
 		/// Calculates the numeric result of the given expression tree without any additional detail.

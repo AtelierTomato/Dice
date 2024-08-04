@@ -71,7 +71,7 @@ namespace AtelierTomato.Dice
 			return result;
 		}
 
-		private IEnumerable<DicePartValue> DropAndKeep(IEnumerable<DicePartValue> rolls, DicePartValue? dropAmount, DicePartValue? keepAmount)
+		private static IEnumerable<DicePartValue> DropAndKeep(IEnumerable<DicePartValue> rolls, DicePartValue? dropAmount, DicePartValue? keepAmount)
 		{
 			if (dropAmount is { IsInfinite: true }) return Enumerable.Empty<DicePartValue>();
 

@@ -8,62 +8,62 @@ namespace AtelierTomato.Dice.Model.Nodes
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
-			sb = sb.Append(ParenthesizeIfNeeded(Quantity)).Append("d").Append(ParenthesizeIfNeeded(Sides));
+			sb = sb.Append(ParenthesizeIfNeeded(Quantity)).Append('d').Append(ParenthesizeIfNeeded(Sides));
 
 			if (ExplodeThreshold is not null)
 			{
 				if (ExplodeIsInfinite)
-					sb = sb.Append("i");
-				sb = sb.Append("e").Append(ExplodeThreshold);
+					sb = sb.Append('i');
+				sb = sb.Append('e').Append(ExplodeThreshold);
 				if (ExplodeIterations is not null)
-					sb = sb.Append(";").Append(ParenthesizeIfNeeded(ExplodeIterations));
+					sb = sb.Append(';').Append(ParenthesizeIfNeeded(ExplodeIterations));
 
 			}
 
 			if (RerollThreshold is not null)
 			{
 				if (RerollIsInfinite)
-					sb = sb.Append("i");
-				sb = sb.Append("r").Append(ParenthesizeIfNeeded(RerollThreshold));
+					sb = sb.Append('i');
+				sb = sb.Append('r').Append(ParenthesizeIfNeeded(RerollThreshold));
 				if (RerollIterations is not null)
-					sb = sb.Append(";").Append(ParenthesizeIfNeeded(RerollIterations));
+					sb = sb.Append(';').Append(ParenthesizeIfNeeded(RerollIterations));
 
 			}
 
 			if (DropLowestAmount is not null)
 			{
-				sb = sb.Append("p").Append(ParenthesizeIfNeeded(DropLowestAmount));
+				sb = sb.Append('p').Append(ParenthesizeIfNeeded(DropLowestAmount));
 			}
 
 			if (KeepHighestAmount is not null)
 			{
-				sb = sb.Append("k").Append(ParenthesizeIfNeeded(KeepHighestAmount));
+				sb = sb.Append('k').Append(ParenthesizeIfNeeded(KeepHighestAmount));
 			}
 
 			if (TargetThreshold is not null)
 			{
-				sb = sb.Append("t").Append(ParenthesizeIfNeeded(TargetThreshold));
+				sb = sb.Append('t').Append(ParenthesizeIfNeeded(TargetThreshold));
 			}
 
 			if (FailureThreshold is not null)
 			{
-				sb = sb.Append("f").Append(ParenthesizeIfNeeded(FailureThreshold));
+				sb = sb.Append('f').Append(ParenthesizeIfNeeded(FailureThreshold));
 			}
 
 			if (SortDescending)
-				sb = sb.Append("o");
+				sb = sb.Append('o');
 
 			if (DiceDisplayBehavior == DiceDisplayBehavior.Hide)
-				sb = sb.Append("h");
+				sb = sb.Append('h');
 
 			if (DiceDisplayBehavior == DiceDisplayBehavior.Show)
-				sb = sb.Append("s");
+				sb = sb.Append('s');
 
 			if (DiceVerbosity == DiceVerbosity.Quiet)
-				sb = sb.Append("q");
+				sb = sb.Append('q');
 
 			if (DiceVerbosity == DiceVerbosity.Verbose)
-				sb = sb.Append("v");
+				sb = sb.Append('v');
 
 			return sb.ToString();
 		}

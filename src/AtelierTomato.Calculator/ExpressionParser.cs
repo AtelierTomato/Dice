@@ -1,7 +1,7 @@
-﻿using AtelierTomato.Calculator.Model;
-using AtelierTomato.Calculator.Model.Nodes;
-using System.Globalization;
+﻿using System.Globalization;
 using System.Text.RegularExpressions;
+using AtelierTomato.Calculator.Model;
+using AtelierTomato.Calculator.Model.Nodes;
 
 namespace AtelierTomato.Calculator
 {
@@ -13,7 +13,8 @@ namespace AtelierTomato.Calculator
 		private readonly Regex operatorRegex = new(@"[+\-*×∙/÷(^]", RegexOptions.Compiled);
 		private readonly Regex numberPieceRegex = new(@"[\d.]", RegexOptions.Compiled);
 
-		private readonly IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> dyadicMultiplicationLevelOperatorConstructors = new Dictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> {
+		private readonly IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> dyadicMultiplicationLevelOperatorConstructors = new Dictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>>
+		{
 			["*"] = (left, right) => new MultiplyNode(left, right),
 			["×"] = (left, right) => new MultiplyNode(left, right),
 			["∙"] = (left, right) => new MultiplyNode(left, right),
@@ -21,7 +22,8 @@ namespace AtelierTomato.Calculator
 			["÷"] = (left, right) => new DivideNode(left, right),
 		};
 
-		private readonly IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> dyadicAdditionLevelOperatorConstructors = new Dictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> {
+		private readonly IReadOnlyDictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>> dyadicAdditionLevelOperatorConstructors = new Dictionary<string, Func<IExpressionNode, IExpressionNode, IExpressionNode>>
+		{
 			["+"] = (left, right) => new AddNode(left, right),
 			["-"] = (left, right) => new SubtractNode(left, right),
 		};
@@ -101,7 +103,8 @@ namespace AtelierTomato.Calculator
 				{
 					// add implied multiplication operator
 					tokenEntry.InsertAfterThis(new RawOperatorToken("*"));
-				} else if (tokenEntry.Value is RawOperatorToken { Value: "-" })
+				}
+				else if (tokenEntry.Value is RawOperatorToken { Value: "-" })
 				{
 					var previousIsNotPartOfSubtraction = tokenEntry.Previous?.Value is null or (not NumberNode and not CloseParenthesisToken);
 					var nextIsNegatable = tokenEntry.Next.Value is NumberNode or OpenParenthesisToken;

@@ -18,13 +18,16 @@
 			if (double.IsNaN(value))
 			{
 				throw new ArgumentException("This dice part is not a number!", nameof(value));
-			} else if (double.IsInfinity(value))
+			}
+			else if (double.IsInfinity(value))
 			{
 				this.Value = null;
-			} else if (Math.Abs(value) > int.MaxValue)
+			}
+			else if (Math.Abs(value) > int.MaxValue)
 			{
 				throw new ArgumentOutOfRangeException(nameof(value), "This dice part is too big but not infinite!");
-			} else
+			}
+			else
 			{
 				this.Value = Math.Abs((int)Math.Round(value, 0));
 			}

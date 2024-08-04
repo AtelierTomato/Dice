@@ -1,6 +1,6 @@
-﻿using AtelierTomato.Dice.Model;
+﻿using System.Text;
+using AtelierTomato.Dice.Model;
 using AtelierTomato.Dice.Settings;
-using System.Text;
 
 namespace AtelierTomato.Dice
 {
@@ -30,7 +30,8 @@ namespace AtelierTomato.Dice
 
 		private string BuildExpressionEntry(DiceRequest diceRequest, IReadOnlyList<DicePartValue> rolls, DicePartValue? targetCounter, double result)
 		{
-			var excludeRollList = (diceRequest.DiceVerbosity, diceExpressionFormat) switch {
+			var excludeRollList = (diceRequest.DiceVerbosity, diceExpressionFormat) switch
+			{
 				(DiceVerbosity.Quiet, _) => true,
 				(DiceVerbosity.Verbose, _) => false,
 				(DiceVerbosity.Default, DiceExpressionFormat.TotalOnly) => true,
@@ -45,20 +46,25 @@ namespace AtelierTomato.Dice
 				if (excludeRollList)
 				{
 					return $"`{diceRequest}`: Hit: {result}";
-				} else if (!rolls.Any())
+				}
+				else if (!rolls.Any())
 				{
 					return $"`{diceRequest}`: Hit: {result}";
-				} else
+				}
+				else
 				{
 					return $"`{diceRequest}`: `[{string.Join(", ", rolls)}]` Hit: {result}";
 				}
-			} else if (!rolls.Any())
+			}
+			else if (!rolls.Any())
 			{
 				return $"`{diceRequest}`: 0, there's no dice!";
-			} else if (rolls.Count == 1 || excludeRollList)
+			}
+			else if (rolls.Count == 1 || excludeRollList)
 			{
 				return $"`{diceRequest}`: {result}";
-			} else
+			}
+			else
 			{
 				return $"`{diceRequest}`: `[{string.Join(", ", rolls)}]` Sum: {result}";
 			}
@@ -70,7 +76,8 @@ namespace AtelierTomato.Dice
 			bool isLast = true;
 			while (diceLogs.TryPop(out var logItem))
 			{
-				outputStringBuilder = (logItem.diceDisplayBehavior, diceQueryFormat) switch {
+				outputStringBuilder = (logItem.diceDisplayBehavior, diceQueryFormat) switch
+				{
 					(DiceDisplayBehavior.Hide, _) => outputStringBuilder,
 					(DiceDisplayBehavior.Show, _) => outputStringBuilder.Insert(0, Environment.NewLine).Insert(0, logItem.diceLog),
 					(DiceDisplayBehavior.Default, DiceQueryFormat.ResultOnly) => outputStringBuilder,

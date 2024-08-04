@@ -16,7 +16,7 @@ namespace AtelierTomato.Calculator.Test
 			var result = target.Tokenize(input);
 			result.Should().NotBeNull().And.BeOfType<DoubleLinkedListItem<ITreeOrToken>>();
 
-			var resultAsList = DoubleLinkedListItem<ITreeOrToken>.ConvertToList(result);
+			var resultAsList = result.ConvertToList();
 
 			resultAsList.Should().HaveCount(3);
 			resultAsList[0].Should().BeOfType<NumberNode>();

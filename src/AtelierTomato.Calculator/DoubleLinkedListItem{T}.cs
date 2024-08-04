@@ -225,7 +225,7 @@
 		/// </summary>
 		/// <param name="left"></param>
 		/// <param name="right"></param>
-		public static void Link(DoubleLinkedListItem<T> left, DoubleLinkedListItem<T> right)
+		private static void Link(DoubleLinkedListItem<T> left, DoubleLinkedListItem<T> right)
 		{
 			if (left.FindPreviousItem(p => p == right) is not null) throw new ArgumentException("Right may not be before left!");
 			if (right.FindNextItem(p => p == left) is not null) throw new ArgumentException("Left may not be after right!");
@@ -239,19 +239,34 @@
 			right.Previous = left;
 		}
 
-		public static DoubleLinkedListItem<T> AppendToOrCreate(DoubleLinkedListItem<T>? last, T value)
+		/// <summary>
+		/// Links the given item to the left of this item, unlinking any existing Next/Previous relations.
+		/// </summary>
+		/// <param name="left"></param>
+		public void LinkLeft(DoubleLinkedListItem<T> left) => Link(left, this);
+
+		/// <summary>
+		/// Links the given item to the right of this item, unlinking any existing Next/Previous relations.
+		/// </summary>
+		/// <param name="right"></param>
+		public void LinkRight(DoubleLinkedListItem<T> right) => Link(this, right);
+
+		public List<T> ConvertToList()
+		{
+			var result = new List<T>();
+			for (var current = this.First; current is not null; current = current.Next)
+				result.Add(current.Value);
+			return result;
+		}
+	}
+
+	public static class DoubleLinkedListItemExtensions
+	{
+		public static DoubleLinkedListItem<T> AppendToOrCreate<T>(this DoubleLinkedListItem<T>? last, T value)
 		{
 			if (last is null) return new DoubleLinkedListItem<T>(value);
 			if (last.Next is not null) throw new ArgumentException("Can only append to ends of lists.", nameof(last));
 			return last.InsertAfterThis(value);
-		}
-
-		public static List<T> ConvertToList(DoubleLinkedListItem<T> item)
-		{
-			var result = new List<T>();
-			for (var current = item.First; current is not null; current = current.Next)
-				result.Add(current.Value);
-			return result;
 		}
 	}
 }

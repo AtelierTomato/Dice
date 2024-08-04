@@ -57,13 +57,13 @@ namespace AtelierTomato.Calculator
 				switch (expressionText.Substring(i, 1))
 				{
 					case "(":
-						last = DoubleLinkedListItem<ITreeOrToken>.AppendToOrCreate(last, new OpenParenthesisToken());
+						last = last.AppendToOrCreate(new OpenParenthesisToken());
 						break;
 					case ")":
-						last = DoubleLinkedListItem<ITreeOrToken>.AppendToOrCreate(last, new CloseParenthesisToken());
+						last = last.AppendToOrCreate(new CloseParenthesisToken());
 						break;
 					case string rawOperator when operatorRegex.IsMatch(rawOperator):
-						last = DoubleLinkedListItem<ITreeOrToken>.AppendToOrCreate(last, new RawOperatorToken(rawOperator));
+						last = last.AppendToOrCreate(new RawOperatorToken(rawOperator));
 						break;
 					case string number when numberPieceRegex.IsMatch(number):
 						while (i + 1 < expressionText.Length && numberPieceRegex.IsMatch(expressionText.AsSpan(i + 1, 1)))
@@ -71,7 +71,7 @@ namespace AtelierTomato.Calculator
 							number += expressionText.Substring(i + 1, 1);
 							++i;
 						}
-						last = DoubleLinkedListItem<ITreeOrToken>.AppendToOrCreate(last, new NumberNode(double.Parse(number, new CultureInfo("en-us"))));
+						last = last.AppendToOrCreate(new NumberNode(double.Parse(number, new CultureInfo("en-us"))));
 						break;
 					case string space when Regex.IsMatch(space, @"\s"):
 						// ignore

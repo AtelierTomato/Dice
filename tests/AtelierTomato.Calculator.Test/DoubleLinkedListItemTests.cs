@@ -1,4 +1,4 @@
-using FluentAssertions;
+﻿using FluentAssertions;
 
 namespace AtelierTomato.Calculator.Test
 {
@@ -25,7 +25,8 @@ namespace AtelierTomato.Calculator.Test
 		[Fact]
 		public void AppendToOrCreateOntoNullTest()
 		{
-			var result = DoubleLinkedListItem<int>.AppendToOrCreate(null, 1);
+			DoubleLinkedListItem<int>? target = null;
+			var result = target.AppendToOrCreate(1);
 			result.Should().NotBeNull().And.BeOfType<DoubleLinkedListItem<int>>();
 			result.Value.Should().Be(1);
 		}
@@ -33,7 +34,7 @@ namespace AtelierTomato.Calculator.Test
 		public void AppendToOrCreateOntoListTest()
 		{
 			var givenList = new DoubleLinkedListItem<int>(0);
-			var result = DoubleLinkedListItem<int>.AppendToOrCreate(givenList, 1);
+			var result = givenList.AppendToOrCreate(1);
 			result.Should().NotBeNull();
 			result.Value.Should().Be(1);
 			result.Previous.Should().NotBeNull();

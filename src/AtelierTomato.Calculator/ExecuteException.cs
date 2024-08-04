@@ -13,8 +13,5 @@ namespace AtelierTomato.Calculator
 		public ExecuteException(string message, DoubleLinkedListItem<ITreeOrToken> tokenListFirst) : base(message) { this.Tokens = DoubleLinkedListItem<ITreeOrToken>.ConvertToList(tokenListFirst); }
 		public ExecuteException(string message, string expressionText) : base(message) { this.ExpressionText = expressionText; }
 		public ExecuteException(string message, string expressionText, Exception inner) : base(message, inner) { this.ExpressionText = expressionText; }
-		protected ExecuteException(
-		  System.Runtime.Serialization.SerializationInfo info,
-		  System.Runtime.Serialization.StreamingContext context) : base(info, context) { }
 	}
 }

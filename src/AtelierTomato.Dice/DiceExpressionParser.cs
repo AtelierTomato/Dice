@@ -159,12 +159,10 @@ namespace AtelierTomato.Dice
 
 			while (tokensListFirst != tokensListFirst.Last)
 			{
-				var parenthesisPair = FindParenthesisPair(tokensListFirst);
-				if (parenthesisPair is null) throw new ParseException("somehow a parenthesis went missing!");
+				var parenthesisPair = FindParenthesisPair(tokensListFirst) ?? throw new ParseException("somehow a parenthesis went missing!");
+				var remainingListItem = ProcessParenthesisPair(parenthesisPair.start, parenthesisPair.end);
 
-				var remainingListItem = ProcessParenthesisPair(parenthesisPair.Value.start, parenthesisPair.Value.end);
-
-				if (tokensListFirst == parenthesisPair.Value.start) tokensListFirst = remainingListItem;
+				if (tokensListFirst == parenthesisPair.start) tokensListFirst = remainingListItem;
 			}
 
 			return (IExpressionNode)tokensListFirst.Value;
@@ -175,8 +173,7 @@ namespace AtelierTomato.Dice
 			var closeToken = tokensListFirst.FindValueForward(t => t is CloseParenthesisToken);
 			if (closeToken is null) return null;
 
-			var openToken = closeToken.FindValueBackward(t => t is OpenParenthesisToken);
-			if (openToken is null) throw new ParseException("somehow an opening parenthesis went missing!");
+			var openToken = closeToken.FindValueBackward(t => t is OpenParenthesisToken) ?? throw new ParseException("somehow an opening parenthesis went missing!");
 			return (openToken, closeToken);
 		}
 

@@ -19,7 +19,7 @@ namespace AtelierTomato.Dice
 		{
 			if (diceRequest.Quantity.IsInfinite && diceRequest.TargetThreshold is not null)
 			{
-				queryExecutionLogBuilder.AddExpression(diceRequest, Array.Empty<DicePartValue>(), DicePartValue.Infinity, double.PositiveInfinity);
+				queryExecutionLogBuilder.AddExpression(diceRequest, [], DicePartValue.Infinity, double.PositiveInfinity);
 				return Double.PositiveInfinity;
 			}
 
@@ -73,7 +73,7 @@ namespace AtelierTomato.Dice
 
 		private static IEnumerable<DicePartValue> DropAndKeep(IEnumerable<DicePartValue> rolls, DicePartValue? dropAmount, DicePartValue? keepAmount)
 		{
-			if (dropAmount is { IsInfinite: true }) return Enumerable.Empty<DicePartValue>();
+			if (dropAmount is { IsInfinite: true }) return [];
 
 			var indexedRollsMinusDrops = rolls.Select((roll, index) => (roll, index))
 				.OrderBy(t => t.roll)
@@ -93,8 +93,8 @@ namespace AtelierTomato.Dice
 			// if we have an infinite quantity of dice, cap if infinity is broken by other directives
 			var cappedQuantity = diceRequest switch
 			{
-				{ Quantity: { IsInfinite: false } } => diceRequest.Quantity,
-				{ KeepHighestAmount: { IsInfinite: false } } => diceRequest.KeepHighestAmount,
+				{ Quantity.IsInfinite: false } => diceRequest.Quantity,
+				{ KeepHighestAmount.IsInfinite: false } => diceRequest.KeepHighestAmount,
 				_ => diceRequest.Quantity,
 			};
 

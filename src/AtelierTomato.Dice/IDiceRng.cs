@@ -6,8 +6,8 @@
 	public interface IDiceRng
 	{
 		/// <summary>
-		/// Generates a random number between <paramref name="from"/> and <paramref name="to"/>, the boundaries are inclusive.
+		/// Generates a random number between <paramref name="minValue"/> and <paramref name="maxValue"/>, the boundaries are inclusive.
 		/// </summary>
-		int GenerateInteger(int from, int to);
+		int GenerateInteger(int minValue, int maxValue);
 	}
 }

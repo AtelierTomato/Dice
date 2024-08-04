@@ -23,7 +23,7 @@ namespace AtelierTomato.Dice.Model
 		public override string ToString()
 		{
 			var sb = new StringBuilder();
-			sb = sb.Append(Quantity.SourceValue).Append('d').Append(Sides.ToString());
+			sb = sb.Append(Quantity.ToString()).Append('d').Append(Sides.ToString());
 
 			if (ExplodeThreshold is not null)
 			{

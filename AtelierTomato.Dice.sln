@@ -3,7 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34622.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AtelierTomato.Calculator", "AtelierTomato.Calculator\AtelierTomato.Calculator.csproj", "{A6120531-4169-4FA2-910D-2D9A69F1FD63}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtelierTomato.Calculator", "src\AtelierTomato.Calculator\AtelierTomato.Calculator.csproj", "{A6120531-4169-4FA2-910D-2D9A69F1FD63}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtelierTomato.Calculator.Test", "tests\AtelierTomato.Calculator.Test\AtelierTomato.Calculator.Test.csproj", "{608D7524-504C-4FDC-AACE-618E278933F7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtelierTomato.Dice", "src\AtelierTomato.Dice\AtelierTomato.Dice.csproj", "{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AtelierTomato.Dice.Test", "tests\AtelierTomato.Dice.Test\AtelierTomato.Dice.Test.csproj", "{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC0FCC2A-10E8-4074-A343-F2CC988771D4}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		CHANGELOG.md = CHANGELOG.md
+		LICENSE.txt = LICENSE.txt
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{16FC95FB-B79E-4338-99B9-72C28F174DF6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{5D053FC9-8D92-454E-AC6D-A3BF9681A104}"
+	ProjectSection(SolutionItems) = preProject
+		.github\workflows\build-publish-nuget.yml = .github\workflows\build-publish-nuget.yml
+		.github\workflows\test-develop.yml = .github\workflows\test-develop.yml
+		.github\workflows\test-main.yml = .github\workflows\test-main.yml
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +39,25 @@ Global
 		{A6120531-4169-4FA2-910D-2D9A69F1FD63}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A6120531-4169-4FA2-910D-2D9A69F1FD63}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A6120531-4169-4FA2-910D-2D9A69F1FD63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{608D7524-504C-4FDC-AACE-618E278933F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{608D7524-504C-4FDC-AACE-618E278933F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{608D7524-504C-4FDC-AACE-618E278933F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{608D7524-504C-4FDC-AACE-618E278933F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65CA3839-C3B7-4206-B64D-D8A70E1E25D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CCB4E72-6E7D-4E0C-A200-1E407EC8E42A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{16FC95FB-B79E-4338-99B9-72C28F174DF6} = {AC0FCC2A-10E8-4074-A343-F2CC988771D4}
+		{5D053FC9-8D92-454E-AC6D-A3BF9681A104} = {16FC95FB-B79E-4338-99B9-72C28F174DF6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4800720C-08AC-4B07-A55E-7115B3602058}
